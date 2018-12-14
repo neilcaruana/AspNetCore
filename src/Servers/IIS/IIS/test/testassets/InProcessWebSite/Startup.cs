@@ -324,10 +324,10 @@ namespace TestSite
             await ctx.Response.Body.FlushAsync();
 
             var reader = new StreamReader(ctx.Request.Body);
-            while (!reader.EndOfStream)
+            while (true)
             {
                 var line = await reader.ReadLineAsync();
-                if (line == "")
+                if (line == null)
                 {
                     return;
                 }
@@ -350,10 +350,10 @@ namespace TestSite
             await ctx.Response.Body.FlushAsync();
 
             var reader = new StreamReader(ctx.Request.Body);
-            while (!reader.EndOfStream)
+            while (true)
             {
                 var line = await reader.ReadLineAsync();
-                if (line == "")
+                if (line == null)
                 {
                     return;
                 }
@@ -431,8 +431,8 @@ namespace TestSite
         private async Task TestReadOffsetWorks(HttpContext ctx)
         {
             var buffer = new byte[11];
-            ctx.Request.Body.Read(buffer, 0, 6);
-            ctx.Request.Body.Read(buffer, 6, 5);
+            await ctx.Request.Body.ReadAsync(buffer, 0, 6);
+            await ctx.Request.Body.ReadAsync(buffer, 6, 5);
 
             await ctx.Response.WriteAsync(Encoding.UTF8.GetString(buffer));
         }
