@@ -669,48 +669,6 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures
             => string.Format(CultureInfo.CurrentCulture, GetString("ViewComponentResult_NameOrTypeMustBeSet"), p0, p1);
 
         /// <summary>
-        /// Cannot deserialize {0} of type '{1}'.
-        /// </summary>
-        internal static string TempData_CannotDeserializeToken
-        {
-            get => GetString("TempData_CannotDeserializeToken");
-        }
-
-        /// <summary>
-        /// Cannot deserialize {0} of type '{1}'.
-        /// </summary>
-        internal static string FormatTempData_CannotDeserializeToken(object p0, object p1)
-            => string.Format(CultureInfo.CurrentCulture, GetString("TempData_CannotDeserializeToken"), p0, p1);
-
-        /// <summary>
-        /// The '{0}' cannot serialize a dictionary with a key of type '{1}'. The key must be of type '{2}'.
-        /// </summary>
-        internal static string TempData_CannotSerializeDictionary
-        {
-            get => GetString("TempData_CannotSerializeDictionary");
-        }
-
-        /// <summary>
-        /// The '{0}' cannot serialize a dictionary with a key of type '{1}'. The key must be of type '{2}'.
-        /// </summary>
-        internal static string FormatTempData_CannotSerializeDictionary(object p0, object p1, object p2)
-            => string.Format(CultureInfo.CurrentCulture, GetString("TempData_CannotSerializeDictionary"), p0, p1, p2);
-
-        /// <summary>
-        /// The '{0}' cannot serialize an object of type '{1}'.
-        /// </summary>
-        internal static string TempData_CannotSerializeType
-        {
-            get => GetString("TempData_CannotSerializeType");
-        }
-
-        /// <summary>
-        /// The '{0}' cannot serialize an object of type '{1}'.
-        /// </summary>
-        internal static string FormatTempData_CannotSerializeType(object p0, object p1)
-            => string.Format(CultureInfo.CurrentCulture, GetString("TempData_CannotSerializeType"), p0, p1);
-
-        /// <summary>
         /// The collection already contains an entry with key '{0}'.
         /// </summary>
         internal static string Dictionary_DuplicateKey
@@ -795,7 +753,7 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures
             => string.Format(CultureInfo.CurrentCulture, GetString("ViewEnginesAreRequired"), p0, p1, p2);
 
         /// <summary>
-        /// The '{0}.{1}' property with {2} is invalid.
+        /// TempData serializer '{0}' cannot serialize property '{1}.{2}' of type '{3}'.
         /// </summary>
         internal static string TempDataProperties_InvalidType
         {
@@ -803,10 +761,10 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures
         }
 
         /// <summary>
-        /// The '{0}.{1}' property with {2} is invalid.
+        /// TempData serializer '{0}' cannot serialize property '{1}.{2}' of type '{3}'.
         /// </summary>
-        internal static string FormatTempDataProperties_InvalidType(object p0, object p1, object p2)
-            => string.Format(CultureInfo.CurrentCulture, GetString("TempDataProperties_InvalidType"), p0, p1, p2);
+        internal static string FormatTempDataProperties_InvalidType(object p0, object p1, object p2, object p3)
+            => string.Format(CultureInfo.CurrentCulture, GetString("TempDataProperties_InvalidType"), p0, p1, p2, p3);
 
         /// <summary>
         /// The '{0}.{1}' property with {2} is invalid. A property using {2} must have a public getter and setter.

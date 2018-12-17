@@ -173,8 +173,8 @@ namespace Cli.FunctionalTests.Templates
             "Microsoft.AspNetCore.Mvc.Cors.dll",
             "Microsoft.AspNetCore.Mvc.DataAnnotations.dll",
             "Microsoft.AspNetCore.Mvc.dll",
-            "Microsoft.AspNetCore.Mvc.Formatters.Json.dll",
             "Microsoft.AspNetCore.Mvc.Localization.dll",
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll",
             "Microsoft.AspNetCore.Mvc.Razor.dll",
             "Microsoft.AspNetCore.Mvc.Razor.Extensions.dll",
             "Microsoft.AspNetCore.Mvc.RazorPages.dll",
@@ -291,7 +291,7 @@ namespace Cli.FunctionalTests.Templates
         private IDictionary<RuntimeIdentifier, Func<IEnumerable<string>>> _additionalFilesAfterPublish =>
             new Dictionary<RuntimeIdentifier, Func<IEnumerable<string>>>()
             {
-                { RuntimeIdentifier.None, () => 
+                { RuntimeIdentifier.None, () =>
                     _additionalFilesAfterPublishCommon
                     .Concat(new[]
                     {
@@ -332,7 +332,7 @@ namespace Cli.FunctionalTests.Templates
                         Path.Combine("runtimes", "win", "lib", "netstandard2.0", "System.Security.Cryptography.Pkcs.dll"),
                     })
                 },
-                { RuntimeIdentifier.Win_x64, () => 
+                { RuntimeIdentifier.Win_x64, () =>
                     _additionalFilesAfterPublishCommon
                     .Concat(_additionalFilesAfterPublishSelfContained)
                     .Concat(new[]
