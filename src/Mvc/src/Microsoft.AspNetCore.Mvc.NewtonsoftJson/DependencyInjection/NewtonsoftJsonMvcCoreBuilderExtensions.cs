@@ -23,7 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="builder">The <see cref="IMvcCoreBuilder"/>.</param>
         /// <returns>The <see cref="IMvcCoreBuilder"/>.</returns>
-        public static IMvcCoreBuilder AddNewtonsoftJsonFeatures(this IMvcCoreBuilder builder)
+        public static IMvcCoreBuilder AddNewtonsoftJson(this IMvcCoreBuilder builder)
         {
             if (builder == null)
             {
@@ -40,7 +40,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IMvcCoreBuilder"/>.</param>
         /// <param name="setupAction">Callback to configure <see cref="MvcNewtonsoftJsonOptions"/>.</param>
         /// <returns>The <see cref="IMvcCoreBuilder"/>.</returns>
-        public static IMvcCoreBuilder AddNewtonsoftJsonFeatures(
+        public static IMvcCoreBuilder AddNewtonsoftJson(
             this IMvcCoreBuilder builder,
             Action<MvcNewtonsoftJsonOptions> setupAction)
         {
@@ -70,9 +70,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 ServiceDescriptor.Transient<IApiDescriptionProvider, JsonPatchOperationsArrayProvider>());
             services.TryAddSingleton<IActionResultExecutor<JsonResult>, JsonResultExecutor>();
 
-            var tempDataSerializer = services.FirstOrDefault(
-                f => f.ServiceType == typeof(TempDataSerializer) && 
-                f.ImplementationType == typeof(DefaultTempDataSerializer));
+            var viewFeaturesAssembly = typeof(IHtmlHelper).Assembly;
+
+            var tempDataSerializer = services.FirstOrDefault(f =>
+                f.ServiceType == typeof(TempDataSerializer) &&
+                f.ImplementationType?.Assembly == viewFeaturesAssembly &&
+                f.ImplementationType.FullName == "Microsoft.AspNetCore.Mvc.ViewFeatures.Infrastructure.DefaultTempDataSerializer");
 
             if (tempDataSerializer != null)
             {
@@ -86,7 +89,8 @@ namespace Microsoft.Extensions.DependencyInjection
             //
             var jsonHelper = services.FirstOrDefault(
                 f => f.ServiceType == typeof(IJsonHelper) &&
-                f.ImplementationType == typeof(DefaultJsonHelper));
+                f.ImplementationType?.Assembly == viewFeaturesAssembly &&
+                f.ImplementationType.FullName == "Microsoft.AspNetCore.Mvc.Rendering.DefaultJsonHelper");
             if (jsonHelper != null)
             {
                 services.Remove(jsonHelper);

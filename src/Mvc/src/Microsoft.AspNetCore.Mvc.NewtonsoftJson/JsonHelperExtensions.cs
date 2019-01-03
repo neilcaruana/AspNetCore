@@ -39,7 +39,7 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
                     nameof(jsonHelper),
                     nameof(IJsonHelper),
                     typeof(JsonHelperExtensions).Assembly.GetName().Name,
-                    nameof(NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJsonFeatures));
+                    nameof(NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson));
 
                 throw new ArgumentException(message, nameof(jsonHelper));
             }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.Mvc.ViewFeatures.Infrastructure
 {
-    public sealed class DefaultTempDataSerializer : TempDataSerializer
+    internal class DefaultTempDataSerializer : TempDataSerializer
     {
         public override IDictionary<string, object> Deserialize(byte[] unprotectedData)
         {

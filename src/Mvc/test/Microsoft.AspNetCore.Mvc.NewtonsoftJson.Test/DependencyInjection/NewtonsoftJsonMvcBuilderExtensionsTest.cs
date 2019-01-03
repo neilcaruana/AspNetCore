@@ -8,17 +8,17 @@ using Xunit;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public class MvcJsonMvcBuilderExtensionsTest
+    public class NewtonsoftJsonMvcBuilderExtensionsTest
     {
         [Fact]
-        public void AddNewtonsoftJsonFeatures_ConfiguresOptions()
+        public void AddNewtonsoftJson_ConfiguresOptions()
         {
             // Arrange
             var services = new ServiceCollection();
 
             // Act
             services.AddMvc()
-                .AddNewtonsoftJsonFeatures((options) =>
+                .AddNewtonsoftJson((options) =>
                 {
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });

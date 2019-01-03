@@ -19,7 +19,7 @@ namespace FormatterWebSite
 
                 options.InputFormatters.Add(new StringInputFormatter());
             })
-            .AddNewtonsoftJsonFeatures(options => options.SerializerSettings.Converters.Insert(0, new IModelConverter()))
+            .AddNewtonsoftJson(options => options.SerializerSettings.Converters.Insert(0, new IModelConverter()))
             .AddXmlDataContractSerializerFormatters()
             .SetCompatibilityVersion(CompatibilityVersion.Latest);
         }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ASP.NET Core MVC features that use Newtonsoft.Json. Includes formatter for JSON and JSON PATCH input and output, and extensions to Controllers.</Description>
+    <Description>ASP.NET Core MVC features that use Newtonsoft.Json. Includes input and output formatters for JSON and JSON PATCH.</Description>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

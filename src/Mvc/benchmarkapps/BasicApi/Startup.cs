@@ -125,7 +125,7 @@ namespace BasicApi
             services
                 .AddMvcCore()
                 .AddAuthorization()
-                .AddNewtonsoftJsonFeatures(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddDataAnnotations();
         }
 

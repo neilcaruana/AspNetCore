@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="builder">The <see cref="IMvcBuilder"/>.</param>
         /// <returns>The <see cref="IMvcBuilder"/>.</returns>
-        public static IMvcBuilder AddNewtonsoftJsonFeatures(this IMvcBuilder builder)
+        public static IMvcBuilder AddNewtonsoftJson(this IMvcBuilder builder)
         {
             if (builder == null)
             {
@@ -33,7 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder">The <see cref="IMvcBuilder"/>.</param>
         /// <param name="setupAction">Callback to configure <see cref="MvcNewtonsoftJsonOptions"/>.</param>
         /// <returns>The <see cref="IMvcBuilder"/>.</returns>
-        public static IMvcBuilder AddNewtonsoftJsonFeatures(
+        public static IMvcBuilder AddNewtonsoftJson(
             this IMvcBuilder builder,
             Action<MvcNewtonsoftJsonOptions> setupAction)
         {

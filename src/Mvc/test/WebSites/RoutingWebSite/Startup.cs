@@ -20,7 +20,7 @@ namespace RoutingWebSite
 
             services
                 .AddMvc(ConfigureMvcOptions)
-                .AddNewtonsoftJsonFeatures()
+                .AddNewtonsoftJson()
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AddPageRoute("/PageRouteTransformer/PageWithConfiguredRoute", "/PageRouteTransformer/NewConventionRoute/{id?}");

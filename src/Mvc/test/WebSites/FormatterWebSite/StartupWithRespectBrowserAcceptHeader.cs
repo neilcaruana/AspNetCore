@@ -14,7 +14,7 @@ namespace FormatterWebSite
             {
                 options.RespectBrowserAcceptHeader = true;
             })
-            .AddNewtonsoftJsonFeatures();
+            .AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app)
