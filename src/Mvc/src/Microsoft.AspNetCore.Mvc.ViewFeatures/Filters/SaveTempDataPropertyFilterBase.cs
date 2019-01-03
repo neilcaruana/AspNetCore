@@ -133,7 +133,6 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures.Filters
                     property.Name,
                     TypeNameHelper.GetTypeDisplayName(property.PropertyType)));
             }
-
         }
     }
 }

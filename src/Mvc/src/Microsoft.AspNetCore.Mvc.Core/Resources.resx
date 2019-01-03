@@ -491,6 +491,6 @@
     <value>Unprocessable Entity</value>
   </data>
   <data name="ReferenceToNewtonsoftJsonRequired" xml:space="preserve">
-    <value>Invoking this operation requires a reference to '{0}'. Modify your application to add a reference to the '{0}' package.</value>
+    <value>'{0}' requires a reference to '{1}'. Configure your application by adding a reference to the '{1}' package and calling '{2}.{3}' inside the call to '{4}' in the application startup code.</value>
   </data>
 </root>

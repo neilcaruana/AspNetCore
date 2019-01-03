@@ -283,4 +283,10 @@
   <data name="TempDataProperties_InvalidType" xml:space="preserve">
     <value>TempData serializer '{0}' cannot serialize property '{1}.{2}' of type '{3}'.</value>
   </data>
+  <data name="DeserializingTempData" xml:space="preserve">
+    <value>Deserializing TempDataDictionary</value>
+  </data>
+  <data name="SerializingTempData" xml:space="preserve">
+    <value>Serializing TempDataDictionary</value>
+  </data>
 </root>

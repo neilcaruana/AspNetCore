@@ -4,6 +4,7 @@
 
 using System;
 using Microsoft.AspNetCore.Html;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Mvc.Rendering
 {
@@ -12,7 +13,12 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
         /// <inheritdoc />
         public IHtmlContent Serialize(object value)
         {
-            throw new NotSupportedException();
+            throw new InvalidOperationException(Core.Resources.FormatReferenceToNewtonsoftJsonRequired(
+               $"{nameof(IJsonHelper)}.{nameof(Serialize)}",
+               "Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+               nameof(IMvcBuilder),
+               "AddNewtonsoftJson",
+               "ConfigureServices(...)"));
         }
     }
 }

@@ -753,6 +753,20 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures
             => string.Format(CultureInfo.CurrentCulture, GetString("ViewEnginesAreRequired"), p0, p1, p2);
 
         /// <summary>
+        /// The '{0}.{1}' property with {2} is invalid. A property using {2} must have a public getter and setter.
+        /// </summary>
+        internal static string TempDataProperties_PublicGetterSetter
+        {
+            get => GetString("TempDataProperties_PublicGetterSetter");
+        }
+
+        /// <summary>
+        /// The '{0}.{1}' property with {2} is invalid. A property using {2} must have a public getter and setter.
+        /// </summary>
+        internal static string FormatTempDataProperties_PublicGetterSetter(object p0, object p1, object p2)
+            => string.Format(CultureInfo.CurrentCulture, GetString("TempDataProperties_PublicGetterSetter"), p0, p1, p2);
+
+        /// <summary>
         /// TempData serializer '{0}' cannot serialize property '{1}.{2}' of type '{3}'.
         /// </summary>
         internal static string TempDataProperties_InvalidType
@@ -767,18 +781,32 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures
             => string.Format(CultureInfo.CurrentCulture, GetString("TempDataProperties_InvalidType"), p0, p1, p2, p3);
 
         /// <summary>
-        /// The '{0}.{1}' property with {2} is invalid. A property using {2} must have a public getter and setter.
+        /// Deserializing TempDataDictionary
         /// </summary>
-        internal static string TempDataProperties_PublicGetterSetter
+        internal static string DeserializingTempData
         {
-            get => GetString("TempDataProperties_PublicGetterSetter");
+            get => GetString("DeserializingTempData");
         }
 
         /// <summary>
-        /// The '{0}.{1}' property with {2} is invalid. A property using {2} must have a public getter and setter.
+        /// Deserializing TempDataDictionary
         /// </summary>
-        internal static string FormatTempDataProperties_PublicGetterSetter(object p0, object p1, object p2)
-            => string.Format(CultureInfo.CurrentCulture, GetString("TempDataProperties_PublicGetterSetter"), p0, p1, p2);
+        internal static string FormatDeserializingTempData()
+            => GetString("DeserializingTempData");
+
+        /// <summary>
+        /// Serializing TempDataDictionary
+        /// </summary>
+        internal static string SerializingTempData
+        {
+            get => GetString("SerializingTempData");
+        }
+
+        /// <summary>
+        /// Serializing TempDataDictionary
+        /// </summary>
+        internal static string FormatSerializingTempData()
+            => GetString("SerializingTempData");
 
         private static string GetString(string name, params string[] formatterNames)
         {

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Mvc.ViewFeatures.Infrastructure
 {
@@ -10,12 +11,22 @@ namespace Microsoft.AspNetCore.Mvc.ViewFeatures.Infrastructure
     {
         public override IDictionary<string, object> Deserialize(byte[] unprotectedData)
         {
-            throw new NotSupportedException("This will get fixed eventually.");
+            throw new InvalidOperationException(Core.Resources.FormatReferenceToNewtonsoftJsonRequired(
+                Resources.DeserializingTempData,
+                "Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+                nameof(IMvcBuilder),
+                "AddNewtonsoftJson",
+                "ConfigureServices(...)"));
         }
 
         public override byte[] Serialize(IDictionary<string, object> values)
         {
-            throw new NotSupportedException("This will get fixed eventually.");
+            throw new InvalidOperationException(Core.Resources.FormatReferenceToNewtonsoftJsonRequired(
+                Resources.SerializingTempData,
+                "Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+                nameof(IMvcBuilder),
+                "AddNewtonsoftJson",
+                "ConfigureServices(...)"));
         }
     }
 }
