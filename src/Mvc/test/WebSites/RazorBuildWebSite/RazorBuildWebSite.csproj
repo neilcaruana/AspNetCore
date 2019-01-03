@@ -12,7 +12,6 @@
     <Reference Include="Microsoft.AspNetCore.Mvc" />
 
     <!-- Faking like we had Razor-on-Build (Rzc) and MvcPrecompilation -->
-    <ProjectReference Include="..\RazorBuildWebSite.PrecompiledViews\RazorBuildWebSite.PrecompiledViews.csproj" />
     <ProjectReference Include="..\RazorBuildWebSite.Views\RazorBuildWebSite.Views.csproj" />
 
     <Reference Include="Microsoft.AspNetCore.Server.IISIntegration" />

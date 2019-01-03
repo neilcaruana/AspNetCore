@@ -6,26 +6,59 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Razor.Hosting;
 using Microsoft.Extensions.Options;
 
 namespace Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure
 {
     public class PageActionDescriptorProvider : IActionDescriptorProvider
     {
+        private readonly ApplicationPartManager _partManager;
         private readonly IPageRouteModelProvider[] _routeModelProviders;
-        private readonly MvcOptions _mvcOptions;
         private readonly IPageRouteModelConvention[] _conventions;
 
+        [Obsolete(
+            "This constructor is obsolete and code using it may not behave correctly. " +
+            "Use the constructor that accepts an ApplicationPartManager.")]
         public PageActionDescriptorProvider(
             IEnumerable<IPageRouteModelProvider> pageRouteModelProviders,
-            IOptions<MvcOptions> mvcOptionsAccessor,
+            IOptions<MvcOptions> mvcOptionsAccessor, // Unused but left here to avoid a breaking change
             IOptions<RazorPagesOptions> pagesOptionsAccessor)
         {
             _routeModelProviders = pageRouteModelProviders.OrderBy(p => p.Order).ToArray();
-            _mvcOptions = mvcOptionsAccessor.Value;
+
+            _conventions = pagesOptionsAccessor.Value.Conventions
+                .OfType<IPageRouteModelConvention>()
+                .ToArray();
+        }
+
+        public PageActionDescriptorProvider(
+            ApplicationPartManager partManager,
+            IEnumerable<IPageRouteModelProvider> pageRouteModelProviders,
+            IOptions<RazorPagesOptions> pagesOptionsAccessor)
+        {
+            if (partManager == null)
+            {
+                throw new ArgumentNullException(nameof(partManager));
+            }
+
+            if (pageRouteModelProviders == null)
+            {
+                throw new ArgumentNullException(nameof(pageRouteModelProviders));
+            }
+
+            if (pagesOptionsAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(pagesOptionsAccessor));
+            }
+
+            _partManager = partManager;
+
+            _routeModelProviders = pageRouteModelProviders.OrderBy(p => p.Order).ToArray();
 
             _conventions = pagesOptionsAccessor.Value.Conventions
                 .OfType<IPageRouteModelConvention>()
@@ -46,7 +79,23 @@ namespace Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure
 
         protected IList<PageRouteModel> BuildModel()
         {
-            var context = new PageRouteModelProviderContext();
+            var viewsFeature = new ViewsFeature();
+            _partManager.PopulateFeature(viewsFeature);
+
+            var descriptors = new List<RazorCompiledItem>();
+            var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var viewDescriptor in viewsFeature.ViewDescriptors)
+            {
+                if (!visited.Add(viewDescriptor.RelativePath))
+                {
+                    // Already seen an descriptor with a higher "order"
+                    continue;
+                }
+
+                descriptors.Add(viewDescriptor.Item);
+            }
+
+            var context = new PageRouteModelProviderContext(descriptors);
 
             for (var i = 0; i < _routeModelProviders.Length; i++)
             {
