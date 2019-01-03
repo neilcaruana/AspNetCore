@@ -20,6 +20,7 @@ namespace Microsoft.AspNetCore.Server.IISIntegration.FunctionalTests
                     "..", // obj
                     "..", // projectfolder
                     "iis",
+                    "IISIntegration",
                     "test",
                     "testassets",
                     name));
