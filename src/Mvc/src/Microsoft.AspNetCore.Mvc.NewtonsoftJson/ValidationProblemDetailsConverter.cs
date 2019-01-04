@@ -50,6 +50,9 @@ namespace Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
         private class AnnotatedValidationProblemDetails : AnnotatedProblemDetails
         {
+            /// <remarks>
+            /// Required for JSON.NET deserialization.
+            /// </remarks>
             public AnnotatedValidationProblemDetails() { }
 
             public AnnotatedValidationProblemDetails(ValidationProblemDetails problemDetails)
@@ -60,7 +63,6 @@ namespace Microsoft.AspNetCore.Mvc.NewtonsoftJson
                     Errors[kvp.Key] = kvp.Value;
                 }
             }
-
 
             [JsonProperty(PropertyName = "errors")]
             public IDictionary<string, string[]> Errors { get; } = new Dictionary<string, string[]>(StringComparer.Ordinal);
